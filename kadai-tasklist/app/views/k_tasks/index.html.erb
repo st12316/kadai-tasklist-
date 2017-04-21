@@ -4,8 +4,7 @@
   
 <% @k_tasks.each do |k_task| %>
 
-    <li><%= link_to k_task.id, k_task %> : <%= k_task.content %></li>
-
+    <li> <%= link_to k_task.id, k_task %> : <%= k_task.content %> ( <%= k_task.status %> ) </li>
 <% end %>
 
 </ul>

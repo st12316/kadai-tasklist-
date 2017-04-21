@@ -1,10 +1,11 @@
 class KTasksController < ApplicationController
+  before_action :set_k_task, only: [:show, :edit, :update, :destroy]
+  
   def index
     @k_tasks = KTask.all
   end
   
   def show
-    @k_task = KTask.find(params[:id])
   end
   
   def new
@@ -36,12 +37,9 @@ class KTasksController < ApplicationController
   end
   
   def edit
-    @k_task = KTask.find(params[:id])
   end
   
   def update
-    @k_task = KTask.find(params[:id])
-
     if @k_task.update(k_task_params)
       flash[:success] = 'KTask は正常に更新されました'
       redirect_to @k_task
@@ -52,7 +50,6 @@ class KTasksController < ApplicationController
   end
   
   def destroy
-    @k_task = KTask.find(params[:id])
     @k_task.destroy
 
     flash[:success] = 'KTask は正常に削除されました'
@@ -61,8 +58,12 @@ class KTasksController < ApplicationController
   
   private
   
+  def set_k_task
+    @k_task = KTask.find(params[:id])
+  end
+  
   def k_task_params
-    params.require(:k_task).permit(:content)
+    params.require(:k_task).permit(:content, :status)
   end
   
 end
