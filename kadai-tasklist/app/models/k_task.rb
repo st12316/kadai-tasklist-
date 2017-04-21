@@ -1,0 +1,2 @@
+class KTask < ApplicationRecord
+end
